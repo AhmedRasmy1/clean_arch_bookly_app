@@ -9,8 +9,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox<BookModel>(kFeauturedBooks);
   Hive.registerAdapter(EntityBookAdapter());
+  await Hive.openBox<BookModel>(kFeauturedBooks);
+  await Hive.openBox<BookModel>(kNewestBooks);
 
   runApp(const Bookly());
 }
