@@ -6,7 +6,7 @@ import '../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-class HomeRepoImpl extends HomeRepo {
+class HomeRepoImpl implements HomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;
   final HomeLocalDataSource homeLocalDataSource;
 
