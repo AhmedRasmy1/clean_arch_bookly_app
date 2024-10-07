@@ -5,25 +5,22 @@ import 'package:meta/meta.dart';
 import 'package:bookly/Features/home/domian/entities/entity_book.dart';
 import 'package:bookly/Features/home/domian/usecases/featch_newest_use_case.dart';
 
-part 'featured_books_state.dart';
+part 'newest_books_state.dart';
 
-class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
-  FeaturedBooksCubit(
+class NewestBooksCubit extends Cubit<NewestBooksState> {
+  NewestBooksCubit(
     this.featchNewestBooksUseCase,
-  ) : super(FeaturedBooksInitial());
+  ) : super(NewestBooksInitial());
+
   final FeatchNewestBooksUseCase featchNewestBooksUseCase;
 
-  Future<void> fetchFeaturedBooks() async {
-    emit(FeaturedBooksLoading());
+  Future<void> featchNewestBooks() async {
+    emit(NewestBooksLoading());
     var result = await featchNewestBooksUseCase.call();
-    result.fold((failure) {
-      emit(
-        FeaturedBooksFailure(failure.errorMessage),
-      );
-    }, (featuredBooks) {
-      emit(
-        FeaturedBooksSuccess(featuredBooks),
-      );
+    result.fold((failuer) {
+      emit(NewestBooksFailure(failuer.errorMessage));
+    }, (newestBooks) {
+      emit(NewestBooksSuccess(newestBooks));
     });
   }
 }
