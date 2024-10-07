@@ -50,7 +50,9 @@ class VolumeInfo {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
         title: json['title'] as String?,
-        authors: json['authors'] as List<String>?,
+        authors: (json['authors'] as List<dynamic>?)
+            ?.map((author) => author as String)
+            .toList(),
         publishedDate: json['publishedDate'] as String?,
         description: json['description'] as String?,
         industryIdentifiers: (json['industryIdentifiers'] as List<dynamic>?)
@@ -64,7 +66,9 @@ class VolumeInfo {
         averageRating: json['averageRating'] as num?,
         ratingsCount: json['ratingsCount'] as num?,
         printType: json['printType'] as String?,
-        categories: json['categories'] as List<String>?,
+        categories: (json['categories'] as List<dynamic>?)
+            ?.map((category) => category as String)
+            .toList(),
         maturityRating: json['maturityRating'] as String?,
         allowAnonLogging: json['allowAnonLogging'] as bool?,
         contentVersion: json['contentVersion'] as String?,

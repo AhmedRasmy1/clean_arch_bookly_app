@@ -16,9 +16,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(EntityBookAdapter());
-  await Hive.openBox<BookModel>(kFeauturedBooks);
-  await Hive.openBox<BookModel>(kNewestBooks);
+  await Hive.openBox<EntityBook>(kFeauturedBooks);
+  await Hive.openBox<EntityBook>(kNewestBooks);
   Bloc.observer = SimpleBlocObserver(); //! to call the bloc observer
+  setUp(); //! to call the dependency injection
   runApp(const Bookly());
 }
 
@@ -34,7 +35,7 @@ class Bookly extends StatelessWidget {
             FeatchFeatuerdBooksUseCase(
               getIt.get<HomeRepoImpl>(), //! dependency injection
             ),
-          ),
+          )..fetchFeaturedBooks(),
         ),
       ],
       child: MaterialApp.router(
