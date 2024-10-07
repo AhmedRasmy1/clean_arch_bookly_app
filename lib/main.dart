@@ -1,3 +1,9 @@
+import 'package:bookly/Features/home/data/repositores/home_repo_impl.dart';
+import 'package:bookly/Features/home/domian/usecases/featch_featuerd_books_use_case.dart';
+import 'package:bookly/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
+import 'package:bookly/core/utils/di/di.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'Features/home/data/models/book_model/book_model.dart';
 import 'Features/home/domian/entities/entity_book.dart';
 import 'constants.dart';
@@ -11,7 +17,6 @@ void main() async {
   Hive.registerAdapter(EntityBookAdapter());
   await Hive.openBox<BookModel>(kFeauturedBooks);
   await Hive.openBox<BookModel>(kNewestBooks);
-
   runApp(const Bookly());
 }
 
@@ -20,12 +25,24 @@ class Bookly extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: kPrimaryColor,
-        textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FeaturedBooksCubit(
+            FeatchFeatuerdBooksUseCase(
+              getIt.get<HomeRepoImpl>(),
+            ),
+          ),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: kPrimaryColor,
+          textTheme:
+              GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        ),
       ),
     );
   }
