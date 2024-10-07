@@ -1,4 +1,4 @@
-import 'package:bookly/Features/home/domian/entities/entity_book.dart';
+import '../../../domian/entities/entity_book.dart';
 
 import 'access_info.dart';
 import 'sale_info.dart';
@@ -64,3 +64,15 @@ class BookModel extends EntityBook {
         'searchInfo': searchInfo?.toJson(),
       };
 }
+
+// EntityBook bookModelToEntity(BookModel model) {
+//   return EntityBook(
+//     bookId: model.id!,
+//     image: model.volumeInfo?.imageLinks?.thumbnail ?? '',
+//     title: model.volumeInfo?.title ?? 'No title',
+//     author: model.volumeInfo?.authors?.first ?? 'No author',
+//     rating: model.volumeInfo?.averageRating ?? 0.0,
+//     price: 0.0,
+//     averageCount: model.volumeInfo?.ratingsCount ?? 0,
+//   );
+// }

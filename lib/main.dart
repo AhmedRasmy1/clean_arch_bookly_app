@@ -1,7 +1,7 @@
-import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly/Features/home/domian/entities/entity_book.dart';
-import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/app_router.dart';
+import 'Features/home/data/models/book_model/book_model.dart';
+import 'Features/home/domian/entities/entity_book.dart';
+import 'constants.dart';
+import 'core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';

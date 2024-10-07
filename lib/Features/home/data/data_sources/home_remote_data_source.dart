@@ -1,8 +1,8 @@
-import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly/Features/home/domian/entities/entity_book.dart';
-import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/api_service.dart';
-import 'package:bookly/core/utils/functions/save_data.dart';
+import '../models/book_model/book_model.dart';
+import '../../domian/entities/entity_book.dart';
+import '../../../../constants.dart';
+import '../../../../core/utils/api_service.dart';
+import '../../../../core/utils/functions/save_data.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<EntityBook>> fetchFeaturedBooks();

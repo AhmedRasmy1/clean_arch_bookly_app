@@ -1,7 +1,7 @@
-import 'package:bookly/Features/home/domian/entities/entity_book.dart';
-import 'package:bookly/Features/home/domian/repositories/home_repo.dart';
-import 'package:bookly/core/errors/failure.dart';
-import 'package:bookly/core/use_cases/use_case.dart';
+import '../entities/entity_book.dart';
+import '../repositories/home_repo.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/use_cases/use_case.dart';
 import 'package:dartz/dartz.dart';
 
 class FeatchFeatuerdBooksUseCase extends UseCase<List<EntityBook>, NoParam> {

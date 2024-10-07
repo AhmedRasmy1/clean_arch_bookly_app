@@ -1,8 +1,8 @@
-import 'package:bookly/Features/home/data/data_sources/home_local_data_source.dart';
-import 'package:bookly/Features/home/data/data_sources/home_remote_data_source.dart';
-import 'package:bookly/Features/home/domian/entities/entity_book.dart';
-import 'package:bookly/Features/home/domian/repositories/home_repo.dart';
-import 'package:bookly/core/errors/failure.dart';
+import '../data_sources/home_local_data_source.dart';
+import '../data_sources/home_remote_data_source.dart';
+import '../../domian/entities/entity_book.dart';
+import '../../domian/repositories/home_repo.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
