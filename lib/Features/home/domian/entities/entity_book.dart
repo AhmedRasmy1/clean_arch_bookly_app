@@ -18,12 +18,13 @@ class EntityBook {
   @HiveField(6)
   final num? averageCount;
 
-  EntityBook(
-      {required this.bookId,
-      required this.image,
-      required this.title,
-      required this.author,
-      required this.rating,
-      required this.price,
-      required this.averageCount});
+  EntityBook({
+    required this.bookId,
+    required this.image,
+    required this.title,
+    required this.author,
+    required this.rating,
+    required this.price,
+    required this.averageCount,
+  });
 }

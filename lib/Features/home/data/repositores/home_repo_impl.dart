@@ -38,12 +38,11 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<EntityBook>>> fetchNewestBooks() async {
     try {
       var bookList = homeLocalDataSource.fetchNewestBooks();
-
+      var books = await homeRemoteDataSource.fetchNewestBooks();
       if (bookList.isEmpty) {
-        var books = await homeRemoteDataSource.fetchNewestBooks();
-        return right(books);
-      } else {
         return right(bookList);
+      } else {
+        return right(books);
       }
     } catch (e) {
       if (e is DioException) {

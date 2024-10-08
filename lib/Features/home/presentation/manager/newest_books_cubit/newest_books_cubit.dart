@@ -17,10 +17,13 @@ class NewestBooksCubit extends Cubit<NewestBooksState> {
   Future<void> featchNewestBooks() async {
     emit(NewestBooksLoading());
     var result = await featchNewestBooksUseCase.call();
-    result.fold((failuer) {
-      emit(NewestBooksFailure(failuer.errorMessage));
-    }, (newestBooks) {
-      emit(NewestBooksSuccess(newestBooks));
-    });
+    result.fold(
+      (failuer) {
+        emit(NewestBooksFailure(failuer.errorMessage));
+      },
+      (newestBooks) {
+        emit(NewestBooksSuccess(newestBooks));
+      },
+    );
   }
 }
