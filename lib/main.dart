@@ -5,7 +5,6 @@ import 'package:bookly/core/utils/bloc_observer/simple_bloc_observer.dart';
 import 'package:bookly/core/utils/di/di.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'Features/home/data/models/book_model/book_model.dart';
 import 'Features/home/domian/entities/entity_book.dart';
 import 'constants.dart';
 import 'core/utils/app_router.dart';
@@ -32,10 +31,10 @@ class Bookly extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => FeaturedBooksCubit(
-            FeatchFeatuerdBooksUseCase(
+            FetchFeaturedBooksUseCase(
               getIt.get<HomeRepoImpl>(), //! dependency injection
             ),
-          )..fetchFeaturedBooks(),
+          )..fetchFeaturedBooks(pageNumber: 0),
         ),
       ],
       child: MaterialApp.router(

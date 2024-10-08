@@ -8,22 +8,24 @@ import 'package:bookly/Features/home/domian/usecases/featch_featuerd_books_use_c
 part 'featured_books_state.dart';
 
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
-  FeaturedBooksCubit(
-    this.featchFeatuerdBooksUseCase,
-  ) : super(FeaturedBooksInitial());
-  final FeatchFeatuerdBooksUseCase featchFeatuerdBooksUseCase;
+  FeaturedBooksCubit(this.featuredBooksUseCase) : super(FeaturedBooksInitial());
 
-  Future<void> fetchFeaturedBooks() async {
-    emit(FeaturedBooksLoading());
-    var result = await featchFeatuerdBooksUseCase.call();
+  final FetchFeaturedBooksUseCase featuredBooksUseCase;
+  Future<void> fetchFeaturedBooks({int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(FeaturedBooksLoading());
+    } else {
+      emit(FeaturedBooksPaginationLoading());
+    }
+    var result = await featuredBooksUseCase.call(pageNumber);
     result.fold((failure) {
-      emit(
-        FeaturedBooksFailure(failure.errorMessage),
-      );
-    }, (featuredBooks) {
-      emit(
-        FeaturedBooksSuccess(featuredBooks),
-      );
+      if (pageNumber == 0) {
+        emit(FeaturedBooksFailure(failure.errorMessage));
+      } else {
+        emit(FeaturedBooksPaginationFailure(failure.errorMessage));
+      }
+    }, (books) {
+      emit(FeaturedBooksSuccess(books));
     });
   }
 }
